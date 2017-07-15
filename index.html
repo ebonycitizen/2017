@@ -24,7 +24,7 @@
       var mousedown = false;
       var mousePosition;
       var score;
-      var stage = 2;
+      var stage = 1;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -391,10 +391,11 @@
           if(!init){
             scene.add(font_gover);
             init = true;
+            stage++;
           }
           if(mousedown){
             scene.remove(font_gover);
-            state = STATE.READY;
+            state = STATE.PLAY;
           }
           break;
         case STATE.SCORE:
