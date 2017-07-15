@@ -20,6 +20,7 @@
       var pos = new THREE.Vector3();
       var vel = new THREE.Vector3();
       var stage_mesh = new Array();
+      var stage2_mesh = new Array();  
       var mousedown = false;
       var mousePosition;
       var score = 0;
@@ -118,6 +119,19 @@
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2], 
       ];
       load_num++;
+        
+      var stage_data2 = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+        [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+        [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+        [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+        [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
+        [2, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
+      ];
+      load_num++;
+        
       loader.load( 'hole.png', function ( texture ) {
         var geometry = new THREE.BoxGeometry(1,0.2,1);
         var material = new THREE.MeshNormalMaterial();
@@ -135,6 +149,26 @@
                 stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
                 scene.add(stage_mesh[z][x]);
+                break;
+              default:
+                break;
+              }
+            }
+        }
+          
+        for(z in stage_data2){
+            stage2_mesh[z] = new Array();
+            for(x in stage2_data[z]){
+              switch(stage2_data[z][x]){
+              case 1:
+                stage2_mesh[z][x] = new THREE.Mesh(geometry, material);
+                stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                scene.add(stage2_mesh[z][x]);
+                break;
+              case 2:
+                stage2_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
+                stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                scene.add(stage2_mesh[z][x]);
                 break;
               default:
                 break;
@@ -240,12 +274,20 @@
           var on_surface = false;
           var is_cup_in = false;
            
-          if(0 <= iz && iz < stage_data.length
+          /*if(0 <= iz && iz < stage_data.length
           && 0 <= ix && ix < stage_data[iz].length)
           {
             on_surface = (stage_data[iz][ix] !== 0);
             is_cup_in = (stage_data[iz][ix] === 2);
+          }*/
+                
+          if(0 <= iz && iz < stage_data2.length
+          && 0 <= ix && ix < stage_data2[iz].length)
+          {
+            on_surface = (stage_data2[iz][ix] !== 0);
+            is_cup_in = (stage_data2[iz][ix] === 2);
           }
+                
           if(pos.y < 0.4){
               // 既に落下していたら入力は効かない
               on_surface = false;
@@ -277,6 +319,12 @@
             audio.pause();
             audio.currentTime = 0;
             endSE.play();
+          }
+          // カップイン
+          if(is_cup_in){
+            state = STATE.CLEAR;
+            audio.pause();
+            audio.currentTime = 0;
             clearTime = (new Date() - startTime)/1000;
             if(clearTime < 8)
                 score = 2000;
@@ -301,13 +349,6 @@
                 font_score.position = new THREE.Vector3(0, 5, 0);
                 font_score.rotateX(-0.5*3.1415926535);// y軸を正面
             });
-          }
-          // カップイン
-          if(is_cup_in){
-            state = STATE.CLEAR;
-            audio.pause();
-            audio.currentTime = 0;
-
           }
           break;
         case STATE.CLEAR:
