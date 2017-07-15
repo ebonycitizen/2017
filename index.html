@@ -23,7 +23,7 @@
       var mousedown = false;
       var mousePosition;
       var score;
-      var stage;
+      var stage = 1;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -238,7 +238,7 @@
         switch(state){
         case STATE.INIT:
           // ロード中
-          loadStage(1); 
+          loadStage(stage); 
           break;
         case STATE.READY:
           // 開始待ち
@@ -361,11 +361,11 @@
           if(!init){
             scene.add(font_gover);
             init = true;
-            loadStage(2);
+            stage = 2;
           }
           if(mousedown){
             scene.remove(font_gover);
-            state = STATE.READY;
+            state = STATE.INIT;
           }
           break;
         case STATE.SCORE:
