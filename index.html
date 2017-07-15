@@ -22,7 +22,7 @@
       var stage_mesh = new Array();
       var mousedown = false;
       var mousePosition;
-      var score;
+      var score = 0;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -173,7 +173,7 @@
         } );
         geometry_gover.center();
         var geometry_score = new THREE.TextGeometry( score, {
-          font: "14px 'ＭＳ ゴシック'",
+          font: response,
           size: 1,
           height: 0.1,
           curveSegments: 10,
@@ -327,6 +327,12 @@
             scene.add(font_gover);
             scene.add(font_score);
             init = true;
+            <div id="textDiv"></div>  
+
+    var div = document.getElementById("textDiv");  
+    div.textContent = "my text";  
+    var text = div.textContent;  
+ 
           }
           if(mousedown){
             scene.remove(font_gover);
