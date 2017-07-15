@@ -108,6 +108,49 @@
         if(0===--load_num)state = STATE.READY;
       } );
 
+      // フォントの読み込み
+      load_num++;
+      var font_loader = new THREE.FontLoader();
+      font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
+        var material_font = new THREE.MeshBasicMaterial( { color: 0xff6060 } );
+        var geometry_ready = new THREE.TextGeometry( 'Ready?', {
+          font: response,
+          size: 1.5,
+          height: 0.1,
+          curveSegments: 12,
+          bevelEnabled: false,
+        } );
+        geometry_ready.center();
+        var geometry_clear = new THREE.TextGeometry( 'Clear!', {
+          font: response,
+          size: 1.5,
+          height: 0.1,
+          curveSegments: 12,
+          bevelEnabled: false,
+        } );
+        geometry_clear.center();
+        var geometry_gover = new THREE.TextGeometry( 'GAME OVER', {
+          font: response,
+          size: 1.5,
+          height: 0.1,
+          curveSegments: 12,
+          bevelEnabled: false,
+        } );
+        geometry_gover.center();
+
+        font_ready = new THREE.Mesh( geometry_ready, material_font );
+        font_ready.position = new THREE.Vector3(0, 5, 0);
+        font_ready.rotateX(-0.5*3.1415926535);// y軸を正面
+        font_clear = new THREE.Mesh( geometry_clear, material_font );
+        font_clear.position = new THREE.Vector3(0, 5, 0);
+        font_clear.rotateX(-0.5*3.1415926535);// y軸を正面
+        font_gover = new THREE.Mesh( geometry_gover, material_font );
+        font_gover.position = new THREE.Vector3(0, 5, 0);
+        font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
+          
+        if(0===--load_num)state = STATE.READY;
+      } );
+      
       // ステージの初期化
       var stage_data;
       function loadStage(s) {
@@ -175,49 +218,6 @@
       } );
       }
  
-      // フォントの読み込み
-      load_num++;
-      var font_loader = new THREE.FontLoader();
-      font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
-        var material_font = new THREE.MeshBasicMaterial( { color: 0xff6060 } );
-        var geometry_ready = new THREE.TextGeometry( 'Ready?', {
-          font: response,
-          size: 1.5,
-          height: 0.1,
-          curveSegments: 12,
-          bevelEnabled: false,
-        } );
-        geometry_ready.center();
-        var geometry_clear = new THREE.TextGeometry( 'Clear!', {
-          font: response,
-          size: 1.5,
-          height: 0.1,
-          curveSegments: 12,
-          bevelEnabled: false,
-        } );
-        geometry_clear.center();
-        var geometry_gover = new THREE.TextGeometry( 'GAME OVER', {
-          font: response,
-          size: 1.5,
-          height: 0.1,
-          curveSegments: 12,
-          bevelEnabled: false,
-        } );
-        geometry_gover.center();
-
-        font_ready = new THREE.Mesh( geometry_ready, material_font );
-        font_ready.position = new THREE.Vector3(0, 5, 0);
-        font_ready.rotateX(-0.5*3.1415926535);// y軸を正面
-        font_clear = new THREE.Mesh( geometry_clear, material_font );
-        font_clear.position = new THREE.Vector3(0, 5, 0);
-        font_clear.rotateX(-0.5*3.1415926535);// y軸を正面
-        font_gover = new THREE.Mesh( geometry_gover, material_font );
-        font_gover.position = new THREE.Vector3(0, 5, 0);
-        font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
-          
-        if(0===--load_num)state = STATE.READY;
-      } );
-      
       var lastTime = new Date(); // 前回の時間
       var last_state = STATE.INIT;
       var startTime;
@@ -245,6 +245,8 @@
         switch(state){
         case STATE.INIT:
           // ロード中 
+          if(stage===2)
+              load_num-=2;
           loadStage(stage);
           break;
         case STATE.READY:
