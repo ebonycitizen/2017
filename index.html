@@ -180,7 +180,7 @@
             loader.load( 'hole.png', function ( texture ) {
                 var color = new THREE.Color();
                 var geometry = new THREE.BoxGeometry(1,0.2,1);
-                var material = new THREE.MeshLambertMaterial({color: 0xffff00 });
+                var material = new THREE.MeshLambertMaterial({color: 0xff1200 });
                 var material_tex = new THREE.MeshLambertMaterial({ map: texture });
 
                 for(z in stage_data){
@@ -357,7 +357,7 @@
                         scene.add(font_gover);
                         init = true;
                         stage = 2;
-                        load_num-=2;
+                        //load_num-=2;
                     }
                     if(mousedown){
                         scene.remove(font_gover);
