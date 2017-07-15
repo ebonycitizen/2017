@@ -84,7 +84,7 @@
         var aspect = width / height;
         var near   = 1;
         var far    = 1000;
-        var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+        new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
         camera.position.set( 0, 500, 0 );
         camera.lookAt({x:0, y:0, z:0 });
         
