@@ -179,7 +179,7 @@
             }
             loader.load( 'hole.png', function ( texture ) {
                 var geometry = new THREE.BoxGeometry(1,0.2,1);
-                var material = new THREE.MeshNormalMaterial({ color: 0xffffff, vertexColors: THREE.FaceColors } );
+                var material = new THREE.MeshNormalMaterial({color: 0x88FFFF});
                 var material_tex = new THREE.MeshLambertMaterial({ map: texture });
 
                 for(z in stage_data){
