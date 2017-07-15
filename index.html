@@ -22,8 +22,8 @@
       var stage_mesh = new Array();
       var mousedown = false;
       var mousePosition;
-      var time;
-      var elapsedTime;
+      var startTime = new Date();
+      var currentTime;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -49,7 +49,7 @@
       var height = window.innerHeight;
       renderer.setSize( width, height );
       document.body.appendChild( renderer.domElement );
-
+        
       // マウスクリック
       renderer.domElement.addEventListener('mousedown', function(e){
         mousedown = true;
@@ -174,7 +174,7 @@
         } );
         geometry_gover.center();
         
-        var geometry_time = new THREE.TextGeometry( elapsedTime, {
+        var geometry_time = new THREE.TextGeometry( currentTime, {
           font: response,
           size: 1.5,
           height: 0.1,
@@ -206,7 +206,7 @@
 
         var time = new Date();
         var elapsedTime = time - lastTime; // 前回のstepからの経過時間
-
+        document.write(elaspedTime);
         // カメラ制御
         controls.update();
 
