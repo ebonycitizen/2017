@@ -172,14 +172,7 @@
           bevelEnabled: false,
         } );
         geometry_gover.center();
-        var geometry_score = new THREE.TextGeometry( score, {
-          font: response,
-          size: 1,
-          height: 0.1,
-          curveSegments: 10,
-          bevelEnabled: false,
-        } );
-          
+
         font_ready = new THREE.Mesh( geometry_ready, material_font );
         font_ready.position = new THREE.Vector3(0, 5, 0);
         font_ready.rotateX(-0.5*3.1415926535);// y軸を正面
@@ -189,9 +182,6 @@
         font_gover = new THREE.Mesh( geometry_gover, material_font );
         font_gover.position = new THREE.Vector3(0, 5, 0);
         font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
-        font_score = new THREE.Mesh( geometry_score, material_font );
-        font_score.position = new THREE.Vector3(-50, -50, 0);
-        font_score.rotateX(-0.5*3.1415926535);// y軸を正面  
           
         if(0===--load_num)state = STATE.READY;
       } );
@@ -296,6 +286,20 @@
                 score = 1000;
             else
                 score = 500;
+              
+            font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
+                var material_font = new THREE.MeshBasicMaterial( { color: 0xff6060 } );
+                var geometry_score = new THREE.TextGeometry( score, {
+                  font: response,
+                  size: 1,
+                  height: 0.1,
+                  curveSegments: 10,
+                  bevelEnabled: false,
+                } );
+                font_score = new THREE.Mesh( geometry_score, material_font );
+                font_score.position = new THREE.Vector3(-50, -50, 0);
+                font_score.rotateX(-0.5*3.1415926535);// y軸を正面  
+            }
           }
           // カップイン
           if(is_cup_in){
