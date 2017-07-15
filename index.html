@@ -299,7 +299,7 @@
                         document.onkeydown = keyDown;
                         function keyDown() {
                             if (event.shiftKey == true) {
-                              vel.y += 30;
+                              vel.y += 0.00001 * elapsedTime;
                             }
                         }
                     }else{
