@@ -174,7 +174,7 @@
         } );
         geometry_gover.center();
         
-        var geometry_time = new THREE.TextGeometry( lastTime, {
+        var geometry_time = new THREE.TextGeometry( elapsedTime, {
           font: response,
           size: 1.5,
           height: 0.1,
@@ -200,12 +200,13 @@
       } );
       var lastTime = new Date(); // 前回の時間
       var last_state = STATE.INIT;
+      var elapsedTime;
       
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
 
         var time = new Date();
-        var elapsedTime = time - lastTime; // 前回のstepからの経過時間
+        elapsedTime = time - lastTime; // 前回のstepからの経過時間
           
         // カメラ制御
         controls.update();
