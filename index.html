@@ -188,7 +188,9 @@
               ];
               load_num++;
           }
-          loader.load( 'hole.png', function ( texture ) {
+          
+      }
+        loader.load( 'hole.png', function ( texture ) {
             var geometry = new THREE.BoxGeometry(1,0.2,1);
             var material = new THREE.MeshNormalMaterial();
             var material_tex = new THREE.MeshLambertMaterial({ map: texture });
@@ -216,8 +218,6 @@
            
         if(0===--load_num)state = STATE.READY;
       } );
-      }
- 
       var lastTime = new Date(); // 前回の時間
       var last_state = STATE.INIT;
       var startTime;
@@ -245,8 +245,6 @@
         switch(state){
         case STATE.INIT:
           // ロード中 
-          if(stage===2)
-              load_num-=1;
           loadStage(2);
           break;
         case STATE.READY:
