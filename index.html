@@ -153,7 +153,6 @@
           size: 1.5,
           height: 0.1,
           curveSegments: 12,
-          position : -500,
           bevelEnabled: false,
         } );
         geometry_ready.center();
@@ -325,11 +324,11 @@
         case STATE.GAMEOVER:
           // ゲームオーバー
           if(!init){
-            /*pos.set(-7.5,-10,-2.5);
-            vel.set(0,0,0);
+            pos.set(-2000,-1000,-20000.5);
+            vel.set(2000,2000,2000);
             mesh.position.set(pos.x,pos.y,pos.z);
             mesh.rotateY(0.001*elapsedTime);// 自転
-            scene.add(font_gover);*/
+            scene.add(font_gover);
             scene.add(font_score);
             init = true;
           }
