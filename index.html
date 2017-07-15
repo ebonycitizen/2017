@@ -299,10 +299,16 @@
                         document.onkeydown = keyDown;
                         function keyDown() {
                             if (event.shiftKey == true) {
-                              vel.y += 0.00001 * elapsedTime;
+                              vel.y += 0.001 * elapsedTime;
                             }
                         }
                     }else{
+                        document.onkeyup = keyUp;
+                        function keyUp() {
+                            if (event.shiftKey == true) {
+                              vel.y -= 0.0000001 * 9.8 * elapsedTime;
+                            }
+                        }
                         vel.y -= 0.0000001 * 9.8 * elapsedTime;
                     }
                     pos.add(vel.clone().multiplyScalar(elapsedTime));
