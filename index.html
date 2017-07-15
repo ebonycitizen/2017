@@ -16,7 +16,7 @@
       var font_ready = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
       var font_clear = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
       var font_gover = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
-      var font_time = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
+      var font_score = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
       var pos = new THREE.Vector3();
       var vel = new THREE.Vector3();
       var stage_mesh = new Array();
@@ -171,6 +171,13 @@
           bevelEnabled: false,
         } );
         geometry_gover.center();
+      var geometry_score = new THREE.TextGeometry( score, {
+          font: response,
+          size: 1,
+          height: 0.1,
+          curveSegments: 10,
+          bevelEnabled: false,
+        } );
         
         font_ready = new THREE.Mesh( geometry_ready, material_font );
         font_ready.position = new THREE.Vector3(0, 5, 0);
@@ -181,6 +188,9 @@
         font_gover = new THREE.Mesh( geometry_gover, material_font );
         font_gover.position = new THREE.Vector3(0, 5, 0);
         font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
+        font_score = new THREE.Mesh( geometry_gover, material_font );
+        font_score.position = new THREE.Vector3(-50, -50, 0);
+        font_score.rotateX(-0.5*3.1415926535);// y軸を正面  
           
         if(0===--load_num)state = STATE.READY;
       } );
@@ -285,7 +295,6 @@
                 score = 1000;
             else
                 score = 500;
-            document.write(score);
           }
           // カップイン
           if(is_cup_in){
@@ -310,15 +319,22 @@
         case STATE.GAMEOVER:
           // ゲームオーバー
           if(!init){
-            scene.add(font_gover);
             pos.set(-7.5,0.5,-2.5);
             vel.set(0,0,0);
             mesh.position.set(pos.x,pos.y,pos.z);
             mesh.rotateY(0.001*elapsedTime);// 自転
+            scene.add(font_gover);
+            
+            pos.set(-50,-100,-100);
+            vel.set(0,0,0);
+            mesh.position.set(pos.x,pos.y,pos.z);
+            mesh.rotateY(0.001*elapsedTime);// 自転
+            scene.add(font_score);
             init = true;
           }
           if(mousedown){
             scene.remove(font_gover);
+            scene.remove(font_score);
             state = STATE.READY;
           }
           break;
