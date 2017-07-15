@@ -276,7 +276,7 @@
             audio.pause();
             audio.currentTime = 0;
             endSE.play();
-              clearTime = (new Date() - sTime)/1000;
+              clearTime = (new Date() - startTime)/1000;
             score = (1/clearTime) * 3000;
               document.write(clearTime);
               document.write(score);
