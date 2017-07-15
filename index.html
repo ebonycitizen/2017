@@ -174,7 +174,7 @@
         } );
         geometry_gover.center();
         
-        var geometry_time = new THREE.TextGeometry( currentTime, {
+        var geometry_time = new THREE.TextGeometry( lastTime, {
           font: response,
           size: 1.5,
           height: 0.1,
@@ -206,18 +206,6 @@
 
         var time = new Date();
         var elapsedTime = time - lastTime; // 前回のstepからの経過時間
-
-        var geometry_time = new THREE.TextGeometry( elapsedTime, {
-          //font: response,
-          size: 1.5,
-          height: 0.1,
-          curveSegments: 12,
-          bevelEnabled: false,
-        } );
-        geometry_time.center();  
-        font_time = new THREE.Mesh( geometry_time, material_font );
-        font_time.position = new THREE.Vector3(0, 0, 0);
-        font_time.rotateX(-0.5*3.1415926535);// y軸を正面  
           
         // カメラ制御
         controls.update();
