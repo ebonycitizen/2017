@@ -187,7 +187,8 @@
       
       var lastTime = new Date(); // 前回の時間
       var last_state = STATE.INIT;
-        
+      var sTime;
+      var cTime;  
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
 
@@ -206,8 +207,7 @@
     //      camera.updateProjectionMatrix();
         }
         
-        var sTime;;
-        var cTime;
+        
           
         var init = false;
         switch(state){
