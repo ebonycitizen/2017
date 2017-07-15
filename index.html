@@ -24,7 +24,6 @@
       var mousedown = false;
       var mousePosition;
       var score;
-      var stage = 1;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -111,7 +110,7 @@
       // ステージの初期化
       var stage_data;
       var stage_data2;
-      function loadStage() {
+      function loadStage(stage) {
           if(stage === 1)
           {
               stage_data = [
@@ -191,7 +190,7 @@
             if(0===--load_num)state = STATE.READY;
           } );
       }
-      loadStage();  
+      loadStage(1);  
       // フォントの読み込み
       load_num++;
       var font_loader = new THREE.FontLoader();
@@ -396,11 +395,11 @@
           if(!init){
             scene.add(font_gover);
             init = true;
-            stage=2;
+            
           }
           if(mousedown){
             scene.remove(font_gover);
-            loadStage();
+            loadStage(2);
             state = STATE.READY;
           }
           break;
