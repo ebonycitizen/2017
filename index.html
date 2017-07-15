@@ -296,8 +296,9 @@
                   curveSegments: 12,
                   bevelEnabled: false,
                 } );
+                geometry_score.center();
                 font_score = new THREE.Mesh( geometry_score, material_font );
-                font_score.position = new THREE.Vector3(0, 5, 0);
+                font_score.position = new THREE.Vector3(-7.5, 0.5, -2.5);
                 font_score.rotateX(-0.5*3.1415926535);// y軸を正面
             });
           }
@@ -334,10 +335,6 @@
         case STATE.SCORE:
           // スコア
           if(!init){
-            pos.set(-7.5,0.5,-2.5);
-            vel.set(0,0,0);
-            mesh.position.set(pos.x,pos.y,pos.z);
-            mesh.rotateY(0.001*elapsedTime);// 自転
             scene.add(font_score);
             init = true;
           }
