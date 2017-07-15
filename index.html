@@ -361,10 +361,11 @@
           if(!init){
             scene.add(font_gover);
             init = true;
+            loadStage(2);
           }
           if(mousedown){
             scene.remove(font_gover);
-            state = STATE.INIT;
+            state = STATE.READY;
           }
           break;
         case STATE.SCORE:
