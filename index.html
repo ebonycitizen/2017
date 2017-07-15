@@ -110,12 +110,7 @@
       // ステージの初期化
       var stage_data;
       function loadStage(s) {
-           for(z in stage_data){
-             stage_mesh[z] = new Array();
-             for(x in stage_data[z]){
-                 scene.remove(stage_mesh[z][x]);
-             }
-           }
+           
           stage = s;
           if(s === 1)
           {
@@ -130,8 +125,13 @@
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2], 
               ];
               load_num++;
-          } 
-          else if(s === 2)
+          } for(z in stage_data){
+             stage_mesh[z] = new Array();
+             for(x in stage_data[z]){
+                 scene.remove(stage_mesh[z][x]);
+             }
+           }
+          if(s === 2)
           {
               stage_data = [
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
