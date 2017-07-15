@@ -22,6 +22,8 @@
       var mousedown = false;
       var mousePosition;
       var audio = new Audio("");
+      audio.src = "denshi.mp3";
+      audio.autoplay = false;
 
       var STATE = {
         INIT: 0,
@@ -212,6 +214,7 @@
           if(mousedown){
             scene.remove(font_ready);
             state = STATE.PLAY;
+            audio.play();
           }
           break;
         case STATE.PLAY:
@@ -221,8 +224,6 @@
           var on_surface = false;
           var is_cup_in = false;
 
-          audio.src = "denshi.mp3";
-          
           if(0 <= iz && iz < stage_data.length
           && 0 <= ix && ix < stage_data[iz].length)
           {
@@ -257,10 +258,14 @@
           // 落ちた
           if(vel.y < -0.0001 * 10.0){
             state = STATE.GAMEOVER;
+            audio.pause();
+            audio.currentTime = 0;
           }
           // カップイン
           if(is_cup_in){
             state = STATE.CLEAR;
+            audio.pause();
+            audio.currentTime = 0;
           }
 
           break;
@@ -277,7 +282,6 @@
           break;
         case STATE.GAMEOVER:
           // ゲームオーバー
-          audio.stop();
           if(!init){
             scene.add(font_gover);
             pos.set(-7.5,0.5,-2.5);
