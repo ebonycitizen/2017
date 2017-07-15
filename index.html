@@ -237,7 +237,7 @@
       var last_state = STATE.INIT;
       var startTime;
       var clearTime;
-
+loadStage();
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
 
@@ -260,7 +260,7 @@
         switch(state){
         case STATE.INIT:
           // ロード中
-          loadStage();
+          
           break;
         case STATE.READY:
           // 開始待ち
