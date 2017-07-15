@@ -205,7 +205,10 @@
     //      camera.aspect = width / height;
     //      camera.updateProjectionMatrix();
         }
-
+        
+        var sTime;;
+        var cTime;
+          
         var init = false;
         switch(state){
         case STATE.INIT:
@@ -226,6 +229,7 @@
             state = STATE.PLAY;
             startSE.play();
             audio.play();
+            sTime = new Date();
           }
           break;
         case STATE.PLAY:
@@ -234,7 +238,9 @@
           var iz = Math.floor(pos.z+4.0);
           var on_surface = false;
           var is_cup_in = false;
-
+          
+          cTime = new Date() - sTime;
+                
           if(0 <= iz && iz < stage_data.length
           && 0 <= ix && ix < stage_data[iz].length)
           {
