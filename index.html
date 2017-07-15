@@ -269,7 +269,6 @@
                     var iz = Math.floor(pos.z+4.0);
                     var on_surface = false;
                     var is_cup_in = false;
-                    var jump = false;
 
                     if(0 <= iz && iz < stage_data.length
                     && 0 <= ix && ix < stage_data[iz].length)
@@ -297,15 +296,8 @@
                                 vel.z += 0.00001 * elapsedTime;
                             }
                         }
-                        document.onkeydown = keyDown;
-                        function keyDown() {
-                            if (event.shiftKey == true) {
-                              vel.y += 0.00001 * elapsedTime;
-                                on_surface = false;
-                            }
-                        }
                     }else{
-                        vel.y -= 0.0001 * 9.8 * elapsedTime;
+                        vel.y -= 0.000001 * 9.8 * elapsedTime;
                     }
                     pos.add(vel.clone().multiplyScalar(elapsedTime));
                     mesh.position.set(pos.x,pos.y,pos.z);
