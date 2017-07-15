@@ -299,11 +299,11 @@
                         document.onkeydown = keyDown;
                         function keyDown() {
                             if (event.shiftKey == true) {
-                              vel.y += 0.00001 * elapsedTime;
+                              vel.y += 0.0001 * elapsedTime;
                             }
                             
                         }
-                        if(pos.Y < 0.5)
+                        if(pos.Y > 5)
                             pos.Y = 0.5;
                     }else{
                         vel.y -= 0.0000001 * 9.8 * elapsedTime;
