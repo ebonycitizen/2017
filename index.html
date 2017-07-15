@@ -299,8 +299,10 @@
                         document.onkeydown = keyDown;
                         function keyDown() {
                             if (event.shiftKey == true) {
-                              vel.y += 0.0001 * -9.8 * elapsedTime;
+                              vel.y += 0.01 * -9.8 * elapsedTime;
                             }
+                            if(vel.y < 0.5)
+                                vel.y = 0.5;
                         }
                     }else{
                         vel.y -= 0.0000001 * 9.8 * elapsedTime;
