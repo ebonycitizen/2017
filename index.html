@@ -189,7 +189,7 @@
             if(0===--load_num)state = STATE.READY;
           } );
       }
-        
+      loadStage();  
       // フォントの読み込み
       load_num++;
       var font_loader = new THREE.FontLoader();
@@ -237,7 +237,7 @@
       var last_state = STATE.INIT;
       var startTime;
       var clearTime;
-loadStage();
+
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
 
@@ -423,7 +423,6 @@ loadStage();
         lastTime = time;
       }
       game_loop();
-      loadStage();
 
     </script>
 
