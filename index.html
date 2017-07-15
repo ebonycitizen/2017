@@ -187,8 +187,10 @@
       
       var lastTime = new Date(); // 前回の時間
       var last_state = STATE.INIT;
-      var sTime;
-      var cTime;  
+      var startTime;
+      var clearTime;
+      var score;
+        
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
 
@@ -227,7 +229,7 @@
             state = STATE.PLAY;
             startSE.play();
             audio.play();
-            sTime = new Date();
+            startTime = new Date();
           }
           break;
         case STATE.PLAY:
@@ -274,24 +276,22 @@
             audio.pause();
             audio.currentTime = 0;
             endSE.play();
-            cTime = (new Date() - sTime)/1000;
-            document.write(cTime);     
+              clearTime = (new Date() - sTime)/1000;
+            score = (1/clearTime) * 3000;
+              document.write(clearTime);
+              document.write(score);
           }
           // カップイン
           if(is_cup_in){
             state = STATE.CLEAR;
             audio.pause();
             audio.currentTime = 0;
-          }
-          if(cTime > 10)
-          {
-              state = STATE.GAMEOVER;
-              audio.pause();
-              audio.currentTime = 0;
+
           }
           break;
         case STATE.CLEAR:
           // クリア
+           
           if(!init){
             scene.add(font_clear);
             init = true;
