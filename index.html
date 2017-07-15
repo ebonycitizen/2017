@@ -269,6 +269,7 @@
                     var iz = Math.floor(pos.z+4.0);
                     var on_surface = false;
                     var is_cup_in = false;
+                    var jump = false;
 
                     if(0 <= iz && iz < stage_data.length
                     && 0 <= ix && ix < stage_data[iz].length)
@@ -299,16 +300,22 @@
                         document.onkeydown = keyDown;
                         function keyDown() {
                             if (event.shiftKey == true) {
-                              vel.y += 0.2 -0.3;
-                                
+                              jump = true;
                             }
-                            
                         }
-                        if(pos.Y > 1)
-                           pos.Y = 1;
                     }else{
                         vel.y -= 0.0000001 * 9.8 * elapsedTime;
                     }
+                    if(jump)
+                    {
+                        vel.y += 0.0001 * elapsedTime;
+                        if(pos.y > 1)
+                        {    
+                            pos.y = 0.5;
+                            jump = false;
+                        }
+                    }
+                        
                     pos.add(vel.clone().multiplyScalar(elapsedTime));
                     mesh.position.set(pos.x,pos.y,pos.z);
                     mesh.rotateY(0.001*elapsedTime);// 自転
