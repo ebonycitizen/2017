@@ -176,12 +176,11 @@
         
         var geometry_time = new THREE.TextGeometry( elapsedTime, {
           font: response,
-          size: 1.5,
+          size: 0.5,
           height: 0.1,
-          curveSegments: 12,
+          curveSegments: 2,
           bevelEnabled: false,
         } );
-        geometry_time.center();
         
         font_ready = new THREE.Mesh( geometry_ready, material_font );
         font_ready.position = new THREE.Vector3(0, 5, 0);
@@ -319,6 +318,7 @@
           }
           if(mousedown){
             scene.remove(font_gover);
+            scene.remove(font_time);
             state = STATE.READY;
           }
           break;
