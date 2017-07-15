@@ -109,85 +109,87 @@
       } );
 
       // ステージの初期化
-      if(stage === 1)
-      {
-          var stage_data = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2], 
-          ];
-          load_num++;
-      } 
-      if(stage === 2)
-      {
-          var stage_data2 = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
-            [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
-            [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
-            [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
-            [2, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
-          ];
-          load_num++;
-      }
-      loader.load( 'hole.png', function ( texture ) {
-        var geometry = new THREE.BoxGeometry(1,0.2,1);
-        var material = new THREE.MeshNormalMaterial();
-        var material_tex = new THREE.MeshLambertMaterial({ map: texture });
-        if(stage === 1)
-        {
-           for(z in stage_data){
-             stage_mesh[z] = new Array();
-             for(x in stage_data[z]){
-               switch(stage_data[z][x]){
-               case 1:
-                 stage_mesh[z][x] = new THREE.Mesh(geometry, material);
-                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                 scene.add(stage_mesh[z][x]);
-                 break;
-               case 2:
-                 stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
-                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                 scene.add(stage_mesh[z][x]);
-                 break;
-               default:
-                 break;
-              }
-            }
+      function loadStage() {
+          if(stage === 1)
+          {
+              var stage_data = [
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+                [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2], 
+              ];
+              load_num++;
+          } 
+          if(stage === 2)
+          {
+              var stage_data2 = [
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+                [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+                [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
+                [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
+                [2, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
+              ];
+              load_num++;
           }
-       }
-       if(stage === 2)
-       {
-           for(z in stage_data2){
-            stage2_mesh[z] = new Array();
-            for(x in stage_data2[z]){
-              switch(stage_data2[z][x]){
-              case 1:
-                stage2_mesh[z][x] = new THREE.Mesh(geometry, material);
-                stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                scene.add(stage2_mesh[z][x]);
-                break;
-              case 2:
-                stage2_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
-                stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                scene.add(stage2_mesh[z][x]);
-                break;
-              default:
-                break;
+          loader.load( 'hole.png', function ( texture ) {
+            var geometry = new THREE.BoxGeometry(1,0.2,1);
+            var material = new THREE.MeshNormalMaterial();
+            var material_tex = new THREE.MeshLambertMaterial({ map: texture });
+            if(stage === 1)
+            {
+               for(z in stage_data){
+                 stage_mesh[z] = new Array();
+                 for(x in stage_data[z]){
+                   switch(stage_data[z][x]){
+                   case 1:
+                     stage_mesh[z][x] = new THREE.Mesh(geometry, material);
+                     stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                     scene.add(stage_mesh[z][x]);
+                     break;
+                   case 2:
+                     stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
+                     stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                     scene.add(stage_mesh[z][x]);
+                     break;
+                   default:
+                     break;
+                  }
+                }
               }
-            }
-          }  
-       }
-        if(0===--load_num)state = STATE.READY;
-      } );
-
+           }
+           if(stage === 2)
+           {
+               for(z in stage_data2){
+                stage2_mesh[z] = new Array();
+                for(x in stage_data2[z]){
+                  switch(stage_data2[z][x]){
+                  case 1:
+                    stage2_mesh[z][x] = new THREE.Mesh(geometry, material);
+                    stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                    scene.add(stage2_mesh[z][x]);
+                    break;
+                  case 2:
+                    stage2_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
+                    stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                    scene.add(stage2_mesh[z][x]);
+                    break;
+                  default:
+                    break;
+                  }
+                }
+              }  
+           }
+            if(0===--load_num)state = STATE.READY;
+          } );
+      }
+        
       // フォントの読み込み
       load_num++;
       var font_loader = new THREE.FontLoader();
@@ -258,6 +260,7 @@
         switch(state){
         case STATE.INIT:
           // ロード中
+          loadStage();
           break;
         case STATE.READY:
           // 開始待ち
