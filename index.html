@@ -400,7 +400,8 @@
           }
           if(mousedown){
             scene.remove(font_gover);
-            break;
+            load();
+            state = STATE.READY;
           }
           break;
         case STATE.SCORE:
