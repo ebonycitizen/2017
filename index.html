@@ -267,6 +267,7 @@
         case STATE.INIT:
           // ロード中 
           loadStage(stage);
+          state = STATE.READY;
           break;
         case STATE.READY:
           // 開始待ち
