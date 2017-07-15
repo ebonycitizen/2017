@@ -298,7 +298,7 @@
                 } );
                 geometry_score.center();
                 font_score = new THREE.Mesh( geometry_score, material_font );
-                font_score.position = new THREE.Vector3(-7.5, 0.5, -2.5);
+                font_score.position = new THREE.Vector3(0, 5, 0);
                 font_score.rotateX(-0.5*3.1415926535);// y軸を正面
             });
           }
@@ -318,7 +318,7 @@
           }
           if(mousedown){
             scene.remove(font_clear);
-            state = STATE.READY;
+            state = STATE.SCORE;
           }
           break;
         case STATE.GAMEOVER:
@@ -329,7 +329,7 @@
           }
           if(mousedown){
             scene.remove(font_gover);
-            state = STATE.SCORE;
+            state = STATE.READY;
           }
           break;
         case STATE.SCORE:
