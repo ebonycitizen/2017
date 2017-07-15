@@ -211,15 +211,12 @@
                  break;
               }
             }
-            load_num++;
           }
           
         if(0===--load_num)state = STATE.READY;
         } );
       }
-        
-           
-        
+
       var lastTime = new Date(); // 前回の時間
       var last_state = STATE.INIT;
       var startTime;
@@ -371,6 +368,7 @@
             scene.add(font_gover);
             init = true;
             stage = 2;
+            load_num++;
           }
           if(mousedown){
             scene.remove(font_gover);
