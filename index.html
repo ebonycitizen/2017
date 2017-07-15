@@ -274,7 +274,7 @@
             audio.pause();
             audio.currentTime = 0;
             endSE.play();
-            cTime = new Date() - sTime;
+            cTime = (new Date() - sTime)/1000;
             document.write(cTime);     
           }
           // カップイン
