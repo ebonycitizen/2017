@@ -142,10 +142,6 @@
         if(0===--load_num)state = STATE.READY;
       } );
         
-      var lastTime = new Date(); // 前回の時間
-      var last_state = STATE.INIT;
-      var elapsedTime;
-        
       // フォントの読み込み
       load_num++;
       var font_loader = new THREE.FontLoader();
@@ -194,18 +190,20 @@
         font_gover.position = new THREE.Vector3(0, 5, 0);
         font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
         font_time = new THREE.Mesh( geometry_time, material_font );
-        font_time.position = new THREE.Vector3(-20, 0, 0);
+        font_time.position = new THREE.Vector3(0, 0, 0);
         font_time.rotateX(-0.5*3.1415926535);// y軸を正面  
           
         if(0===--load_num)state = STATE.READY;
       } );
       
-      
+      var lastTime = new Date(); // 前回の時間
+      var last_state = STATE.INIT;
+        
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
 
         var time = new Date();
-        elapsedTime = time - lastTime; // 前回のstepからの経過時間
+        var elapsedTime = time - lastTime; // 前回のstepからの経過時間
           
         // カメラ制御
         controls.update();
@@ -292,7 +290,10 @@
             audio.pause();
             audio.currentTime = 0;
           }
-
+          if(elapsedTime > 1)
+          {
+              state = STATE.CLEAR;
+          }
           break;
         case STATE.CLEAR:
           // クリア
@@ -314,11 +315,9 @@
             mesh.position.set(pos.x,pos.y,pos.z);
             mesh.rotateY(0.001*elapsedTime);// 自転
             init = true;
-            scene.add(font_time);
           }
           if(mousedown){
             scene.remove(font_gover);
-            scene.remove(font_time);
             state = STATE.READY;
           }
           break;
