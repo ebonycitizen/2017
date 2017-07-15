@@ -248,10 +248,7 @@
           var iz = Math.floor(pos.z+4.0);
           var on_surface = false;
           var is_cup_in = false;
-          
-          scene.add(font_time);
-          scene.remove(font_time);
-          
+
           if(0 <= iz && iz < stage_data.length
           && 0 <= ix && ix < stage_data[iz].length)
           {
@@ -318,6 +315,7 @@
             mesh.position.set(pos.x,pos.y,pos.z);
             mesh.rotateY(0.001*elapsedTime);// 自転
             init = true;
+            scene.add(font_time);
           }
           if(mousedown){
             scene.remove(font_gover);
