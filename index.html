@@ -24,6 +24,7 @@
       var mousedown = false;
       var mousePosition;
       var score;
+      var stage = 1;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -136,36 +137,31 @@
         var geometry = new THREE.BoxGeometry(1,0.2,1);
         var material = new THREE.MeshNormalMaterial();
         var material_tex = new THREE.MeshLambertMaterial({ map: texture });
-        for(z in stage_data){
-            stage_mesh[z] = new Array();
-            for(x in stage_data[z]){
-              switch(stage_data[z][x]){
-              case 1:
-                stage_mesh[z][x] = new THREE.Mesh(geometry, material);
-                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                scene.add(stage_mesh[z][x]);
-                break;
-              case 2:
-                stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
-                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                scene.add(stage_mesh[z][x]);
-                break;
-              default:
-                break;
+        if(stage == 1)
+        {
+           for(z in stage_data){
+             stage_mesh[z] = new Array();
+             for(x in stage_data[z]){
+               switch(stage_data[z][x]){
+               case 1:
+                 stage_mesh[z][x] = new THREE.Mesh(geometry, material);
+                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                 scene.add(stage_mesh[z][x]);
+                 break;
+               case 2:
+                 stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
+                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                 scene.add(stage_mesh[z][x]);
+                 break;
+               default:
+                 break;
               }
             }
-        }
-          
-        
-        if(0===--load_num)state = STATE.READY;
-      } );
-        
-      load_num++;
-      loader.load( 'hole.png', function ( texture ) {
-        var geometry = new THREE.BoxGeometry(1,0.2,1);
-        var material = new THREE.MeshNormalMaterial();
-        var material_tex = new THREE.MeshLambertMaterial({ map: texture });
-        for(z in stage_data2){
+          }
+       }
+       if(stage == 2)
+       {
+           for(z in stage_data2){
             stage2_mesh[z] = new Array();
             for(x in stage_data2[z]){
               switch(stage_data2[z][x]){
@@ -183,10 +179,11 @@
                 break;
               }
             }
-        }  
+          }  
+       }
         if(0===--load_num)state = STATE.READY;
-      } );  
-     
+      } );
+
       // フォントの読み込み
       load_num++;
       var font_loader = new THREE.FontLoader();
@@ -283,20 +280,24 @@
           var on_surface = false;
           var is_cup_in = false;
            
-          /*if(0 <= iz && iz < stage_data.length
-          && 0 <= ix && ix < stage_data[iz].length)
+          if(stage == 1)
           {
-            on_surface = (stage_data[iz][ix] !== 0);
-            is_cup_in = (stage_data[iz][ix] === 2);
-          }*/
-                
-          if(0 <= iz && iz < stage_data2.length
-          && 0 <= ix && ix < stage_data2[iz].length)
-          {
-            on_surface = (stage_data2[iz][ix] !== 0);
-            is_cup_in = (stage_data2[iz][ix] === 2);
-          }
-                
+              if(0 <= iz && iz < stage_data.length
+              && 0 <= ix && ix < stage_data[iz].length)
+              {
+                on_surface = (stage_data[iz][ix] !== 0);
+                is_cup_in = (stage_data[iz][ix] === 2);
+              }
+          }      
+          if(stage == 2)
+          {    
+              if(0 <= iz && iz < stage_data2.length
+              && 0 <= ix && ix < stage_data2[iz].length)
+              {
+                on_surface = (stage_data2[iz][ix] !== 0);
+                is_cup_in = (stage_data2[iz][ix] === 2);
+              }
+          }      
           if(pos.y < 0.4){
               // 既に落下していたら入力は効かない
               on_surface = false;
