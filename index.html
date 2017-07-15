@@ -111,7 +111,7 @@
       var stage_data;
       function loadStage(s) {
           stage = s;
-          if(s === 1)
+          if(s === 2)
           {
               stage_data = [
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
@@ -125,7 +125,7 @@
               ];
               load_num++;
           } 
-          if(s === 2)
+          if(s === 1)
           {
               stage_data = [
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
@@ -361,10 +361,10 @@
           if(!init){
             scene.add(font_gover);
             init = true;
-            
           }
           if(mousedown){
             scene.remove(font_gover);
+            state = STATE.INIT;
             loadStage(2);
             state = STATE.READY;
           }
