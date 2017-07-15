@@ -83,12 +83,12 @@
       var near   = 1;
       var far    = 1000;
       var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-      camera.position.set( 0, 500, 0 );
-      camera.lookAt({x:100, y:0, z:100 });
+      camera.position.set( 200, 500, 0 );
+      camera.lookAt({x:0, y:500, z:0 });
 
       var controls = new THREE.OrbitControls(camera);
       controls.enablePan = false;
-      controls.enableRotate = false;
+      controls.enableRotate = true;
       controls.enableZoom  = false;
 
       // キャラクターモデルの初期化
