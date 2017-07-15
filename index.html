@@ -42,7 +42,6 @@
         GAMEOVER: 4,
         SCORE: 5,
       }
-      
       var state = STATE.INIT;
 
       // システムの初期化
@@ -76,7 +75,6 @@
         mousedown = false;
         mousePosition = {x: e.pageX/width, y: e.pageY/height};
       }, false);
-
 
       // ライトの初期化
       var scene = new THREE.Scene();
@@ -205,7 +203,7 @@
                         }
                     }
                 }
-          });
+          }
       }
 
       var lastTime = new Date(); // 前回の時間
