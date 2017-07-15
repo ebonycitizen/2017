@@ -300,11 +300,11 @@
                         function keyDown() {
                             if (event.shiftKey == true) {
                               vel.y += 0.0001 * elapsedTime;
+                                if(pos.Y > 1)
+                                    pos.Y = 1;
                             }
                             
                         }
-                        if(pos.Y > 1)
-                            pos.Y = 1;
                     }else{
                         vel.y -= 0.0000001 * 9.8 * elapsedTime;
                     }
