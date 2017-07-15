@@ -289,7 +289,7 @@
               
             font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
                 var material_font = new THREE.MeshBasicMaterial( { color: 0xff6060 } );
-                var geometry_score = new THREE.TextGeometry( 'SCORE' + score, {
+                var geometry_score = new THREE.TextGeometry( 'SCORE:' + score, {
                   font: response,
                   size: 1.5,
                   height: 0.1,
@@ -334,6 +334,10 @@
         case STATE.SCORE:
           // スコア
           if(!init){
+            pos.set(-7.5,0.5,-2.5);
+            vel.set(0,0,0);
+            mesh.position.set(pos.x,pos.y,pos.z);
+            mesh.rotateY(0.001*elapsedTime);// 自転
             scene.add(font_score);
             init = true;
           }
