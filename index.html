@@ -22,8 +22,12 @@
       var mousedown = false;
       var mousePosition;
       var audio = new Audio("");
+      var startSE = new Audio("");
+      var endSE = new Audio("");
+      
       audio.src = "denshi.mp3";
-      audio.autoplay = false;
+      startSE.src = "start.mp3";
+      endSE.src = "over.mp3";
 
       var STATE = {
         INIT: 0,
@@ -214,6 +218,7 @@
           if(mousedown){
             scene.remove(font_ready);
             state = STATE.PLAY;
+            startSE.play();
             audio.play();
           }
           break;
@@ -260,6 +265,7 @@
             state = STATE.GAMEOVER;
             audio.pause();
             audio.currentTime = 0;
+            endSE.play();
           }
           // カップイン
           if(is_cup_in){
