@@ -41,6 +41,7 @@
         GAMEOVER: 4,
         SCORE: 5,
       }
+      
       var state = STATE.INIT;
 
       // システムの初期化
@@ -110,7 +111,6 @@
       // ステージの初期化
       var stage_data;
       function loadStage(s) {
-          
           stage = s;
           if(s === 1)
           {
@@ -133,7 +133,6 @@
            }
           if(s === 2)
           {
-              load_num = 1;
               stage_data = [
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
@@ -245,9 +244,7 @@
         var init = false;
         switch(state){
         case STATE.INIT:
-          // ロード中
-          document.clear();
-          loadStage(stage); 
+          // ロード中 
           break;
         case STATE.READY:
           // 開始待ち
@@ -371,6 +368,7 @@
             scene.add(font_gover);
             init = true;
             stage = 2;
+            location.reload();
           }
           if(mousedown){
             scene.remove(font_gover);
