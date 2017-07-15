@@ -21,6 +21,7 @@
       var stage_mesh = new Array();
       var mousedown = false;
       var mousePosition;
+      var audio = new Audio("");
 
       var STATE = {
         INIT: 0,
@@ -219,7 +220,7 @@
           var iz = Math.floor(pos.z+4.0);
           var on_surface = false;
           var is_cup_in = false;
-          var audio = new Audio("");
+
           audio.src = "denshi.mp3";
           
           if(0 <= iz && iz < stage_data.length
@@ -276,6 +277,7 @@
           break;
         case STATE.GAMEOVER:
           // ゲームオーバー
+          audio.stop();
           if(!init){
             scene.add(font_gover);
             pos.set(-7.5,0.5,-2.5);
