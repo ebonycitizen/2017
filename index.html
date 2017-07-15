@@ -279,9 +279,9 @@
             audio.pause();
             audio.currentTime = 0;
           }
-          if(elapsedTime > 1)
+          if(elapsedTime > 10)
           {
-              state = STATE.CLEAR;
+              state = STATE.GAMEOVER;
           }
           break;
         case STATE.CLEAR:
