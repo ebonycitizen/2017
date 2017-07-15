@@ -23,7 +23,7 @@
       var stage2_mesh = new Array();  
       var mousedown = false;
       var mousePosition;
-      var score = 0;
+      var score;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -156,6 +156,15 @@
             }
         }
           
+        
+        if(0===--load_num)state = STATE.READY;
+      } );
+        
+      load_num++;
+      loader.load( 'hole.png', function ( texture ) {
+        var geometry = new THREE.BoxGeometry(1,0.2,1);
+        var material = new THREE.MeshNormalMaterial();
+        var material_tex = new THREE.MeshLambertMaterial({ map: texture });
         for(z in stage_data2){
             stage2_mesh[z] = new Array();
             for(x in stage_data2[z]){
@@ -174,10 +183,10 @@
                 break;
               }
             }
-        }
+        }  
         if(0===--load_num)state = STATE.READY;
-      } );
-        
+      } );  
+     
       // フォントの読み込み
       load_num++;
       var font_loader = new THREE.FontLoader();
