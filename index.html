@@ -297,7 +297,7 @@
                   bevelEnabled: false,
                 } );
                 font_score = new THREE.Mesh( geometry_score, material_font );
-                font_score.position = new THREE.Vector3(-200, -2000, 20);
+                font_score.position = new THREE.Vector3(0, 5, 0);
                 font_score.rotateX(-0.5*3.1415926535);// y軸を正面
             });
           }
@@ -324,18 +324,16 @@
         case STATE.GAMEOVER:
           // ゲームオーバー
           if(!init){
-            pos.set(-2000,-1000,-20000.5);
-            vel.set(2000,2000,2000);
-            mesh.position.set(pos.x,pos.y,pos.z);
-            mesh.rotateY(0.001*elapsedTime);// 自転
             scene.add(font_gover);
-            scene.add(font_score);
             init = true;
           }
           if(mousedown){
             scene.remove(font_gover);
-            scene.remove(font_score);
-            state = STATE.READY;
+            scene.add(font_score);
+          }
+          if(mousedown){
+              scene.remove(font_score);
+              state = STATE.READY;
           }
           break;
         }
