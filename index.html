@@ -158,8 +158,8 @@
           
         for(z in stage_data2){
             stage2_mesh[z] = new Array();
-            for(x in stage2_data[z]){
-              switch(stage2_data[z][x]){
+            for(x in stage_data2[z]){
+              switch(stage_data2[z][x]){
               case 1:
                 stage2_mesh[z][x] = new THREE.Mesh(geometry, material);
                 stage2_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
