@@ -274,25 +274,14 @@
           var iz = Math.floor(pos.z+4.0);
           var on_surface = false;
           var is_cup_in = false;
-           
-          if(stage === 1)
+
+          if(0 <= iz && iz < stage_data.length
+          && 0 <= ix && ix < stage_data[iz].length)
           {
-              if(0 <= iz && iz < stage_data.length
-              && 0 <= ix && ix < stage_data[iz].length)
-              {
-                on_surface = (stage_data[iz][ix] !== 0);
-                is_cup_in = (stage_data[iz][ix] === 2);
-              }
-          }      
-          if(stage === 2)
-          {    
-              if(0 <= iz && iz < stage_data2.length
-              && 0 <= ix && ix < stage_data2[iz].length)
-              {
-                on_surface = (stage_data2[iz][ix] !== 0);
-                is_cup_in = (stage_data2[iz][ix] === 2);
-              }
-          }      
+            on_surface = (stage_data[iz][ix] !== 0);
+            is_cup_in = (stage_data[iz][ix] === 2);
+          }
+
           if(pos.y < 0.4){
               // 既に落下していたら入力は効かない
               on_surface = false;
