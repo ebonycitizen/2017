@@ -22,6 +22,7 @@
       var stage_mesh = new Array();
       var mousedown = false;
       var mousePosition;
+      var score;
       var audio = new Audio("");
       var startSE = new Audio("");
       var endSE = new Audio("");
@@ -200,7 +201,7 @@
       var last_state = STATE.INIT;
       var startTime;
       var clearTime;
-      var score;
+
         
       function game_loop() {
         requestAnimationFrame( game_loop );// 次回準備
