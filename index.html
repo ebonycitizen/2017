@@ -16,6 +16,7 @@
       var font_ready = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
       var font_clear = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
       var font_gover = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
+      var font_time = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
       var pos = new THREE.Vector3();
       var vel = new THREE.Vector3();
       var stage_mesh = new Array();
@@ -28,6 +29,7 @@
       audio.src = "denshi.mp3";
       startSE.src = "start.mp3";
       endSE.src = "over.mp3";
+      aduio.loop = true;
 
       var STATE = {
         INIT: 0,
@@ -83,8 +85,8 @@
       var near   = 1;
       var far    = 1000;
       var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-      camera.position.set( 200, 500, 0 );
-      camera.lookAt({x:0, y:500, z:0 });
+      camera.position.set( 0, 500, 0 );
+      camera.lookAt({x:0, y:0, z:0 });
 
       var controls = new THREE.OrbitControls(camera);
       controls.enablePan = false;
@@ -187,7 +189,19 @@
 
         var time = new Date();
         var elapsedTime = time - lastTime; // 前回のstepからの経過時間
-
+          
+        var geometry_time = new THREE.TextGeometry( elapsedTime, {
+          font: response,
+          size: 1.5,
+          height: 0.1,
+          curveSegments: 12,
+          bevelEnabled: false,
+        } );
+        geometry_time.center();
+        font_time = new THREE.Mesh( geometry_gover, material_font );
+        font_time.position = new THREE.Vector3(0, 0, 0);
+        font_time.rotateX(-0.5*3.1415926535);// y軸を正面  
+          
         // カメラ制御
         controls.update();
 
@@ -228,7 +242,9 @@
           var iz = Math.floor(pos.z+4.0);
           var on_surface = false;
           var is_cup_in = false;
-
+          
+          scene.add(font_time);
+          
           if(0 <= iz && iz < stage_data.length
           && 0 <= ix && ix < stage_data[iz].length)
           {
