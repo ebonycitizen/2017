@@ -137,7 +137,7 @@
         var geometry = new THREE.BoxGeometry(1,0.2,1);
         var material = new THREE.MeshNormalMaterial();
         var material_tex = new THREE.MeshLambertMaterial({ map: texture });
-        if(stage == 1)
+        if(stage === 1)
         {
            for(z in stage_data){
              stage_mesh[z] = new Array();
@@ -159,7 +159,7 @@
             }
           }
        }
-       if(stage == 2)
+       if(stage === 2)
        {
            for(z in stage_data2){
             stage2_mesh[z] = new Array();
@@ -280,7 +280,7 @@
           var on_surface = false;
           var is_cup_in = false;
            
-          if(stage == 1)
+          if(stage === 1)
           {
               if(0 <= iz && iz < stage_data.length
               && 0 <= ix && ix < stage_data[iz].length)
@@ -289,7 +289,7 @@
                 is_cup_in = (stage_data[iz][ix] === 2);
               }
           }      
-          if(stage == 2)
+          if(stage === 2)
           {    
               if(0 <= iz && iz < stage_data2.length
               && 0 <= ix && ix < stage_data2[iz].length)
