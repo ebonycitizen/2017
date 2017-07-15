@@ -106,8 +106,6 @@
         var material = new THREE.MeshLambertMaterial( { map: texture } );
         mesh = new THREE.Mesh( geometry, material );
         scene.add( mesh );
-        if(0===--load_num)state = STATE.READY;
-      } );
 
       // フォントの読み込み
       load_num++;
@@ -148,9 +146,6 @@
         font_gover = new THREE.Mesh( geometry_gover, material_font );
         font_gover.position = new THREE.Vector3(0, 5, 0);
         font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
-          
-        if(0===--load_num)state = STATE.READY;
-      } );
       
       // ステージの初期化
       var stage_data;
@@ -173,7 +168,7 @@
           }
           if(s === 2)
           {
-              stage_data2 = [
+              stage_data = [
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
                 [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1], 
@@ -186,58 +181,29 @@
               load_num++;
           }
           loader.load( 'hole.png', function ( texture ) {
-            var geometry = new THREE.BoxGeometry(1,0.2,1);
-            var material = new THREE.MeshNormalMaterial();
-            var material_tex = new THREE.MeshLambertMaterial({ map: texture });
+                var geometry = new THREE.BoxGeometry(1,0.2,1);
+                var material = new THREE.MeshNormalMaterial();
+                var material_tex = new THREE.MeshLambertMaterial({ map: texture });
 
-           if(s === 1)
-           {
-              for(z in stage_data){
-                 stage_mesh[z] = new Array();
-                 for(x in stage_data[z]){
-                   switch(stage_data[z][x]){
-                   case 1:
-                     stage_mesh[z][x] = new THREE.Mesh(geometry, material);
-                     stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                     scene.add(stage_mesh[z][x]);
-                     break;
-                   case 2:
-                     stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
-                     stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                     scene.add(stage_mesh[z][x]);
-                     break;
-                   default:
-                     break;
-                  }
+                for(z in stage_data){
+                    stage_mesh[z] = new Array();
+                        for(x in stage_data[z]){
+                        switch(stage_data[z][x]){
+                        case 1:
+                             stage_mesh[z][x] = new THREE.Mesh(geometry, material);
+                             stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                             scene.add(stage_mesh[z][x]);
+                             break;
+                        case 2:
+                             stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
+                             stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                             scene.add(stage_mesh[z][x]);
+                             break;
+                        default:
+                            break;
+                        }
+                    }
                 }
-              }
-           }
-          if(s === 2)
-          {
-              for(z in stage_data2){
-                 stage_mesh2[z] = new Array();
-                 for(x in stage_data2[z]){
-                   scene.remove(stage_mesh[z][x]);
-                   switch(stage_data2[z][x]){
-                   case 1:
-                     stage_mesh2[z][x] = new THREE.Mesh(geometry, material);
-                     stage_mesh2[z][x].position.set(x-7.5,-0.1,z-3.5);
-                     scene.add(stage_mesh2[z][x]);
-                     break;
-                   case 2:
-                     stage_mesh2[z][x] = new THREE.Mesh(geometry, material_tex);
-                     stage_mesh2[z][x].position.set(x-7.5,-0.1,z-3.5);
-                     scene.add(stage_mesh2[z][x]);
-                     break;
-                   default:
-                     break;
-                  }
-                }
-              }
-          }
-          
-        if(0===--load_num)state = STATE.READY;
-        } );
       }
 
       var lastTime = new Date(); // 前回の時間
@@ -268,8 +234,7 @@
         case STATE.INIT:
           // ロード中 
           loadStage(stage);
-          if(stage===2)
-            state = STATE.READY;
+          state = STATE.READY;
           break;
         case STATE.READY:
           // 開始待ち
