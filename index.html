@@ -276,10 +276,16 @@
             audio.pause();
             audio.currentTime = 0;
             endSE.play();
-              clearTime = (new Date() - startTime)/1000;
-            score = (1/clearTime) * 3000;
-              document.write(clearTime);
-              document.write(score);
+            clearTime = (new Date() - startTime)/1000;
+            if(clearTime < 8)
+                score = 2000;
+            else if(clearTime > 8 && clearTime < 15)
+                score = 1500;
+            else if(clearTime > 15 && clearTime < 23)
+                score = 1000;
+            else
+                score = 500;
+            document.write(score);
           }
           // カップイン
           if(is_cup_in){
