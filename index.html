@@ -172,14 +172,6 @@
         } );
         geometry_gover.center();
         
-        var geometry_time = new THREE.TextGeometry( elapsedTime, {
-          font: response,
-          size: 1,
-          height: 0.1,
-          curveSegments: 12,
-          bevelEnabled: false,
-        } );
-        
         font_ready = new THREE.Mesh( geometry_ready, material_font );
         font_ready.position = new THREE.Vector3(0, 5, 0);
         font_ready.rotateX(-0.5*3.1415926535);// y軸を正面
@@ -189,9 +181,6 @@
         font_gover = new THREE.Mesh( geometry_gover, material_font );
         font_gover.position = new THREE.Vector3(0, 5, 0);
         font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
-        font_time = new THREE.Mesh( geometry_time, material_font );
-        font_time.position = new THREE.Vector3(0, 0, 0);
-        font_time.rotateX(-0.5*3.1415926535);// y軸を正面  
           
         if(0===--load_num)state = STATE.READY;
       } );
