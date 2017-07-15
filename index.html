@@ -282,6 +282,8 @@
           if(elapsedTime > 10)
           {
               state = STATE.GAMEOVER;
+              audio.pause();
+              audio.currentTime = 0;
           }
           break;
         case STATE.CLEAR:
