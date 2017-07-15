@@ -310,7 +310,6 @@
           break;
         case STATE.CLEAR:
           // クリア
-           
           if(!init){
             scene.add(font_clear);
             init = true;
@@ -324,17 +323,24 @@
           // ゲームオーバー
           if(!init){
             scene.add(font_gover);
-            //init = true;
+            init = true;
           }
           if(mousedown){
             scene.remove(font_gover);
-            scene.add(font_score);
-          }
-          if(mousedown){
-              //state = STATE.READY;
+            state = STATE.SCORE;
           }
           break;
-        }
+        case STATE.SCORE:
+          // スコア
+          if(!init){
+            scene.add(font_score);
+            init = true;
+          }
+          if(mousedown){
+            scene.remove(font_score);
+            state = STATE.READY;
+          }
+          break;
 
         if(last_state != state){
           mousedown = false;// 一度マウスを落とす
