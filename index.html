@@ -302,7 +302,7 @@
                     if(vel.z > 0){
                         mesh.rotateX(0.001*elapsedTime);
                     }
-                    
+                    //ジャンプ
                     function KeyDownFunc(e){	
                         var shift_key = e.shiftKey;
                         vel.y+=0.00001 * elapsedTime;
@@ -314,6 +314,7 @@
                         vel.y -= 0.0001 * elapsedTime;
                         if(pos.y < 0.5){
                             pos.y = 0.5;
+                            vel.y = 0;
                         }
                     }
                     if(on_surface){
