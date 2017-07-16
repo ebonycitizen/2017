@@ -326,7 +326,7 @@
                             }
                         }
                     }else{
-                        //vel.y -= 0.000001 * 9.8 * elapsedTime;
+                        vel.y -= 0.000001 * 9.8 * elapsedTime;
                     }
                     pos.add(vel.clone().multiplyScalar(elapsedTime));
                     mesh.position.set(pos.x,pos.y,pos.z);
