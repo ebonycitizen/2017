@@ -211,6 +211,7 @@
                                 scene.add(stage_mesh[z][x]);
                                 break;
                             case 2:
+                                scene.remove(stage_mesh[z][x]);
                                 stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
                                 stage_mesh[z][x].position.set(x-7.5, 0 ,z-3.5);
                                 scene.add(stage_mesh[z][x]);
