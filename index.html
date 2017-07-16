@@ -307,7 +307,6 @@
                         function KeyDownFunc(e){	
                             var shift_key = e.shiftKey;
                             vel.y+=0.00001 * elapsedTime;
-                            on_surface = false;
                         }
                         if(document.addEventListener){
                             document.addEventListener("keydown" , KeyDownFunc);
@@ -315,7 +314,6 @@
                         if(vel.y > 0.00005){
                             vel.y -= 0.0001 * elapsedTime;
                             if(pos.y < 0.5){
-                                on_surface = true;
                             }
                         }
                     }
