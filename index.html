@@ -345,6 +345,7 @@
                     // カップイン
                     if(is_cup_in){
                         if(stage === 1){
+                            stage = 2;
                             state = STATE.NEXT;
                         }
                         else
@@ -384,7 +385,6 @@
                     if(!init){
                         scene.add(font_clear);
                         init = true;
-                        stage = 1;
                     }
                     if(mousedown){
                         scene.remove(font_clear);
@@ -396,7 +396,6 @@
                     if(!init){
                         scene.add(font_gover);
                         init = true;
-                        stage = 2;
                     }
                     if(mousedown){
                         scene.remove(font_gover);
@@ -408,6 +407,7 @@
                     if(!init){
                         scene.add(font_score);
                         init = true;
+                        stage = 1;
                     }
                     if(mousedown){
                         scene.remove(font_score);
@@ -423,7 +423,7 @@
                     }
                     if(mousedown){
                         scene.remove(font_next);
-                        state = STATE.PLAY;
+                        state = STATE.READY;
                     }
                     break;
             }          
