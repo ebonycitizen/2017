@@ -305,11 +305,13 @@
                     
                     function KeyDownFunc(e){	
                         var shift_key = e.shiftKey;
-                        vel.y++;
+                        vel.y+=0.00001 * elapsedTime;
                     }
                     if(document.addEventListener){
                         document.addEventListener("keydown" , KeyDownFunc);
                     }
+                    if(vel.y > 0.5)
+                        vel.y = -vel.y;
                     
                     if(on_surface){
                         if(mousedown){
