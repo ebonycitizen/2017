@@ -259,7 +259,7 @@
                         pos.set(6,0.5,-2.5);
                         vel.set(0,0,0);
                         mesh.position.set(pos.x,pos.y,pos.z);
-                        mesh.rotateY(0.001*elapsedTime);// 自転
+                        //mesh.rotateY(0.001*elapsedTime);// 自転
                     }
                     if(mousedown){
                         scene.remove(font_ready);
@@ -293,13 +293,17 @@
                         if(mousedown){
                             if(mousePosition.x < 0.3){
                                 vel.x -= 0.00001 * elapsedTime;
+                                mesh.rotateY(-0.001*elapsedTime);
                             }else if(0.7 < mousePosition.x){
                                 vel.x += 0.00001 * elapsedTime;
+                                mesh.rotateY(0.001*elapsedTime);
                             }
                             if(mousePosition.y < 0.3){
                                 vel.z -= 0.00001 * elapsedTime;
+                                mesh.rotateX(-0.001*elapsedTime);
                             }else if(0.7 < mousePosition.y){
                                 vel.z += 0.00001 * elapsedTime;
+                                mesh.rotateX(0.001*elapsedTime);
                             }
                         }
                     }else{
