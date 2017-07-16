@@ -178,14 +178,29 @@
                 load_num++;
             }
         }
+        
         function loadMap() {
+            var geometry;
+            var material;
+            var materialB;
+            var material_tex;
+            
+            for(z in stage_data){
+                stage_mesh[z] = new Array();
+                for(x in stage_data[z]){
+                        scene.remove( stage_mesh[z][x] );
+                }
+            }
+            geometry.dispose();
+            material.dispose();
+            material_tex.dispose();
+                                
             loader.load( 'hole.png', function ( texture ) {
                 var color = new THREE.Color();
-                var geometry = new THREE.BoxGeometry(1,0.2,1);
-                var material = new THREE.MeshLambertMaterial({color: 0x48D1CC });
-                var materialB = new THREE.MeshLambertMaterial({color: 0x000000 });
-                var material_tex = new THREE.MeshLambertMaterial({ map: texture });
-
+                geometry = new THREE.BoxGeometry(1,0.2,1);
+                material = new THREE.MeshLambertMaterial({color: 0x48D1CC });
+                materialB = new THREE.MeshLambertMaterial({color: 0x000000 });
+                material_tex = new THREE.MeshLambertMaterial({ map: texture });
                 for(z in stage_data){
                     stage_mesh[z] = new Array();
                         for(x in stage_data[z]){
