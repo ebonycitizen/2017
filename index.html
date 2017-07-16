@@ -380,10 +380,10 @@
                         scene.add(font_gover);
                         init = true;
                         stage = 2;
-                        load_num--;
                     }
                     if(mousedown){
                         scene.remove(font_gover);
+                        scene.remove(stage_mesh);
                         state = STATE.INIT;
                     }
                     break;
