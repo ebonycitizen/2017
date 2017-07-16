@@ -190,9 +190,6 @@
                 ];
                 load_num++;
             }
-        }
-        
-        function loadMap() {
             loader.load( 'hole.png', function ( texture ) {
                 var color = new THREE.Color();
                 var geometry = new THREE.BoxGeometry(1,0.2,1);
@@ -224,7 +221,7 @@
                     }
                 }
             });               
-         }
+        }
         
         var lastTime = new Date(); // 前回の時間
         var last_state = STATE.INIT;
@@ -265,14 +262,12 @@
                         pos.set(-7.5,0.5,-2.5);
                         vel.set(0,0,0);
                         mesh.position.set(pos.x,pos.y,pos.z);
-                        //mesh.rotateY(0.001*elapsedTime);// 自転
                     }
                     if(stage === 2)
                     {
                         pos.set(6,0.5,-2.5);
                         vel.set(0,0,0);
                         mesh.position.set(pos.x,pos.y,pos.z);
-                        //mesh.rotateY(0.001*elapsedTime);// 自転
                     }
                     if(mousedown){
                         scene.remove(font_ready);
@@ -345,7 +340,6 @@
                     // カップイン
                     if(is_cup_in){
                         if(stage === 1){
-                            stage = 2;
                             state = STATE.NEXT;
                         }
                         else
@@ -418,8 +412,8 @@
                     if(!init){
                         scene.add(font_next);
                         init = true;
-                        //loadStage(stage);
-                        //loadMap();
+                        stage = 2;
+                        loadStage(stage);
                     }
                     if(mousedown){
                         scene.remove(font_next);
