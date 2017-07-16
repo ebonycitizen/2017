@@ -310,9 +310,9 @@
                     if(document.addEventListener){
                         document.addEventListener("keydown" , KeyDownFunc);
                     }
-                    if(vel.y > 0.5)
+                    if(vel.y > 0.00005){
                         vel.y = -vel.y;
-                    
+                    }
                     if(on_surface){
                         if(mousedown){
                             if(mousePosition.x < 0.3){
