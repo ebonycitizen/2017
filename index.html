@@ -240,6 +240,7 @@
             switch(state){
                 case STATE.INIT:
                     // ロード中 
+                    init = true;
                     loadStage(stage);
                     loadMap();
                     state = STATE.READY;
@@ -383,7 +384,6 @@
                     }
                     if(mousedown){
                         scene.remove(font_gover);
-                        scene.remove(stage_mesh);
                         state = STATE.READY;
                     }
                     break;
