@@ -289,14 +289,19 @@
                     }else{
                         pos.y < 0.5;
                     }
+                    if(vel.x < 0){
+                        mesh.rotateY(-0.001*elapsedTime);
+                    }
+                    if(vel.x > 0){
+                        mesh.rotateY(0.001*elapsedTime);
+                    }
+                        
                     if(on_surface){
                         if(mousedown){
                             if(mousePosition.x < 0.3){
                                 vel.x -= 0.00001 * elapsedTime;
-                                mesh.rotateY(-0.001*elapsedTime);
                             }else if(0.7 < mousePosition.x){
                                 vel.x += 0.00001 * elapsedTime;
-                                mesh.rotateY(0.001*elapsedTime);
                             }
                             if(mousePosition.y < 0.3){
                                 vel.z -= 0.00001 * elapsedTime;
