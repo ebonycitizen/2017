@@ -17,6 +17,7 @@
         var font_clear = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
         var font_gover = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
         var font_score = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
+        var font_next = new THREE.Mesh( new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());// dummy
         var pos = new THREE.Vector3();
         var vel = new THREE.Vector3();
         var stage_mesh = new Array(); 
@@ -39,6 +40,7 @@
             CLEAR: 3,
             GAMEOVER: 4,
             SCORE: 5,
+            NEXT: 6,
         }
         var state = STATE.INIT;
         
@@ -132,6 +134,14 @@
                 bevelEnabled: false,
             } );
             geometry_gover.center();
+            var geometry_next = new THREE.TextGeometry( 'Next Stage', {
+                font: response,
+                size: 1.5,
+                height: 0.1,
+                curveSegments: 12,
+                bevelEnabled: false,
+            } );
+            geometry_next.center();
             
             font_ready = new THREE.Mesh( geometry_ready, material_font );
             font_ready.position = new THREE.Vector3(0, 5, 0);
@@ -142,6 +152,9 @@
             font_gover = new THREE.Mesh( geometry_gover, material_font );
             font_gover.position = new THREE.Vector3(0, 5, 0);
             font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
+            font_next = new THREE.Mesh( geometry_next, material_font );
+            font_next.position = new THREE.Vector3(0, 5, 0);
+            font_next.rotateX(-0.5*3.1415926535);// y軸を正面
         });
         
         // ステージの初期化
@@ -175,7 +188,7 @@
                     [1, 2, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
                     [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1], 
                 ];
-                //load_num++;
+                load_num++;
             }
         }
         
@@ -240,10 +253,6 @@
             switch(state){
                 case STATE.INIT:
                     // ロード中 
-                    init = true;
-                    loadStage(stage);
-                    loadMap();
-                    state = STATE.READY;
                     break;
                 case STATE.READY:
                     // 開始待ち
@@ -335,33 +344,39 @@
                     }
                     // カップイン
                     if(is_cup_in){
-                        state = STATE.CLEAR;
-                        audio.pause();
-                        audio.currentTime = 0;
-                        clearTime = (new Date() - startTime)/1000;
-                        if(clearTime < 8)
-                            score = 2000;
-                        else if(clearTime > 8 && clearTime < 15)
-                            score = 1500;
-                        else if(clearTime > 15 && clearTime < 23)
-                            score = 1000;
+                        if(stage === 1){
+                            state = STATE.NEXT;
+                        }
                         else
-                            score = 500;
-              
-                        font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
-                            var material_font = new THREE.MeshBasicMaterial( { color: 0xDC143C } );
-                            var geometry_score = new THREE.TextGeometry( 'SCORE:' + score, {
-                            font: response,
-                            size: 1.5,
-                            height: 0.1,
-                            curveSegments: 12,
-                            bevelEnabled: false,
-                            } );
-                            geometry_score.center();
-                            font_score = new THREE.Mesh( geometry_score, material_font );
-                            font_score.position = new THREE.Vector3(0, 5, 0);
-                            font_score.rotateX(-0.5*3.1415926535);// y軸を正面
-                        });
+                        {
+                            state = STATE.CLEAR;
+                            audio.pause();
+                            audio.currentTime = 0;
+                            clearTime = (new Date() - startTime)/1000;
+                            if(clearTime < 8)
+                                score = 2000;
+                            else if(clearTime > 8 && clearTime < 15)
+                                score = 1500;
+                            else if(clearTime > 15 && clearTime < 23)
+                                score = 1000;
+                            else
+                                score = 500;
+
+                            font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
+                                var material_font = new THREE.MeshBasicMaterial( { color: 0xDC143C } );
+                                var geometry_score = new THREE.TextGeometry( 'SCORE:' + score, {
+                                font: response,
+                                size: 1.5,
+                                height: 0.1,
+                                curveSegments: 12,
+                                bevelEnabled: false,
+                                } );
+                                geometry_score.center();
+                                font_score = new THREE.Mesh( geometry_score, material_font );
+                                font_score.position = new THREE.Vector3(0, 5, 0);
+                                font_score.rotateX(-0.5*3.1415926535);// y軸を正面
+                            });
+                        }
                     }
                     break;
                 case STATE.CLEAR:
@@ -369,6 +384,7 @@
                     if(!init){
                         scene.add(font_clear);
                         init = true;
+                        stage = 1;
                     }
                     if(mousedown){
                         scene.remove(font_clear);
@@ -384,7 +400,7 @@
                     }
                     if(mousedown){
                         scene.remove(font_gover);
-                        state = STATE.INIT;
+                        state = STATE.READY;
                     }
                     break;
                 case STATE.SCORE:
@@ -396,6 +412,18 @@
                     if(mousedown){
                         scene.remove(font_score);
                         state = STATE.READY;
+                    }
+                    break;
+                case STATE.NEXT:
+                    if(!init){
+                        scene.add(font_next);
+                        init = true;
+                        loadStage(stage);
+                        loadMap();
+                    }
+                    if(mousedown){
+                        scene.remove(font_next);
+                        state = STATE.PLAY;
                     }
                     break;
             }          
