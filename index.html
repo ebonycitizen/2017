@@ -384,6 +384,7 @@
                     }
                     if(mousedown){
                         scene.remove(font_clear);
+                        startSE.play();
                         state = STATE.SCORE;
                     }
                     break;
@@ -421,6 +422,7 @@
                     }
                     if(mousedown){
                         scene.remove(font_next);
+                        startSE.play();
                         state = STATE.INIT;
                     }
                     break;
