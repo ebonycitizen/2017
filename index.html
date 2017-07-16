@@ -143,38 +143,7 @@
             font_gover.position = new THREE.Vector3(0, 5, 0);
             font_gover.rotateX(-0.5*3.1415926535);// y軸を正面
         });
-        loader.load( 'hole.png', function ( texture ) {
-                var color = new THREE.Color();
-                var geometry = new THREE.BoxGeometry(1,0.2,1);
-                var material = new THREE.MeshLambertMaterial({color: 0x48D1CC });
-                var materialB = new THREE.MeshLambertMaterial({color: 0x000000 });
-                var material_tex = new THREE.MeshLambertMaterial({ map: texture });
-
-                for(z in stage_data){
-                    stage_mesh[z] = new Array();
-                        for(x in stage_data[z]){
-                        switch(stage_data[z][x]){
-                            /*case 0:
-                                stage_mesh[z][x] = new THREE.Mesh(geometry, materialB);
-                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                                scene.add(stage_mesh[z][x]);
-                                break;*/
-                            case 1:
-                                stage_mesh[z][x] = new THREE.Mesh(geometry, material);
-                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                                scene.add(stage_mesh[z][x]);
-                                break;
-                            case 2:
-                                stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
-                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
-                                scene.add(stage_mesh[z][x]);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            });               
+        
         // ステージの初期化
         var stage_data;
         var stage_data2;
@@ -208,9 +177,42 @@
                 ];
                 load_num++;
             }
-            
         }
+        function loadMap() {
+            loader.load( 'hole.png', function ( texture ) {
+                var color = new THREE.Color();
+                var geometry = new THREE.BoxGeometry(1,0.2,1);
+                var material = new THREE.MeshLambertMaterial({color: 0x48D1CC });
+                var materialB = new THREE.MeshLambertMaterial({color: 0x000000 });
+                var material_tex = new THREE.MeshLambertMaterial({ map: texture });
 
+                for(z in stage_data){
+                    stage_mesh[z] = new Array();
+                        for(x in stage_data[z]){
+                        switch(stage_data[z][x]){
+                            /*case 0:
+                                stage_mesh[z][x] = new THREE.Mesh(geometry, materialB);
+                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                                scene.add(stage_mesh[z][x]);
+                                break;*/
+                            case 1:
+                                stage_mesh[z][x] = new THREE.Mesh(geometry, material);
+                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                                scene.add(stage_mesh[z][x]);
+                                break;
+                            case 2:
+                                stage_mesh[z][x] = new THREE.Mesh(geometry, material_tex);
+                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
+                                scene.add(stage_mesh[z][x]);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            });               
+         }
+        
         var lastTime = new Date(); // 前回の時間
         var last_state = STATE.INIT;
         var startTime;
@@ -239,6 +241,7 @@
                 case STATE.INIT:
                     // ロード中 
                     loadStage(stage);
+                    loadMap();
                     state = STATE.READY;
                     break;
                 case STATE.READY:
