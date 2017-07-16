@@ -289,13 +289,28 @@
                     }else{
                         pos.y < 0.5;
                     }
+                    // 自転
                     if(vel.x < 0){
                         mesh.rotateY(-0.001*elapsedTime);
                     }
                     if(vel.x > 0){
-                        //mesh.rotateY(0.001*elapsedTime);
+                        mesh.rotateY(0.001*elapsedTime);
                     }
-                        
+                    if(vel.z < 0){
+                        mesh.rotateX(-0.001*elapsedTime);
+                    }
+                    if(vel.z > 0){
+                        mesh.rotateX(0.001*elapsedTime);
+                    }
+                    
+                    function KeyDownFunc(e){	
+                        var shift_key = e.shiftKey;
+                        vel.y++;
+                    }
+                    if(document.addEventListener){
+                        document.addEventListener("keydown" , KeyDownFunc);
+                    }
+                    
                     if(on_surface){
                         if(mousedown){
                             if(mousePosition.x < 0.3){
@@ -305,10 +320,8 @@
                             }
                             if(mousePosition.y < 0.3){
                                 vel.z -= 0.00001 * elapsedTime;
-                                //mesh.rotateX(-0.001*elapsedTime);
                             }else if(0.7 < mousePosition.y){
                                 vel.z += 0.00001 * elapsedTime;
-                                //mesh.rotateX(0.001*elapsedTime);
                             }
                         }
                     }else{
@@ -316,7 +329,7 @@
                     }
                     pos.add(vel.clone().multiplyScalar(elapsedTime));
                     mesh.position.set(pos.x,pos.y,pos.z);
-                    //mesh.rotateY(0.001*elapsedTime);// 自転
+
                     // 落ちた
                     if(vel.y < -0.0001 * 10.0){
                         state = STATE.GAMEOVER;
