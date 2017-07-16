@@ -311,7 +311,10 @@
                         document.addEventListener("keydown" , KeyDownFunc);
                     }
                     if(vel.y > 0.00005){
-                        vel.y -= 0.00001 * elapsedTime;
+                        vel.y -= 0.0001 * elapsedTime;
+                        if(pos.y < 0.5){
+                            pos.y = 0.5;
+                        }
                     }
                     if(on_surface){
                         if(mousedown){
