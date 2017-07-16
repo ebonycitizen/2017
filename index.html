@@ -330,11 +330,7 @@
                     }
                     pos.add(vel.clone().multiplyScalar(elapsedTime));
                     mesh.position.set(pos.x,pos.y,pos.z);
-                    
-                    //timeout
-                    if(elapsedTime > 10)
-                        state = STATE.GAMEOVER;
-                    
+
                     // 落ちた
                     if(vel.y < -0.0001 * 10.0){
                         state = STATE.GAMEOVER;
