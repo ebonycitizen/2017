@@ -165,7 +165,6 @@
             }
             if(s === 2)
             {
-                load_num = 1;
                 stage_data = [
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
@@ -189,11 +188,11 @@
                     stage_mesh[z] = new Array();
                         for(x in stage_data[z]){
                         switch(stage_data[z][x]){
-                            case 0:
+                            /*case 0:
                                 stage_mesh[z][x] = new THREE.Mesh(geometry, materialB);
                                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
                                 scene.add(stage_mesh[z][x]);
-                                break;
+                                break;*/
                             case 1:
                                 stage_mesh[z][x] = new THREE.Mesh(geometry, material);
                                 stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
