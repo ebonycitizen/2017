@@ -201,7 +201,7 @@
                         switch(stage_data[z][x]){
                             case 0:
                                 stage_mesh[z][x] = new THREE.Mesh(geometry, materialB);
-                                stage_mesh[z][x].position.set(x-7.5,-0.2,z-3.5);
+                                stage_mesh[z][x].position.set(x-7.5,-0.1,z-3.5);
                                 scene.add(stage_mesh[z][x]);
                                 break;
                             case 1:
@@ -350,11 +350,11 @@
                             audio.pause();
                             audio.currentTime = 0;
                             clearTime = (new Date() - startTime)/1000;
-                            if(clearTime < 8)
+                            if(clearTime < 10)
                                 score = 2000;
-                            else if(clearTime > 8 && clearTime < 15)
+                            else if(clearTime > 10 && clearTime < 20)
                                 score = 1500;
-                            else if(clearTime > 15 && clearTime < 23)
+                            else if(clearTime > 20 && clearTime < 30)
                                 score = 1000;
                             else
                                 score = 500;
