@@ -107,7 +107,7 @@
         load_num++;
         var font_loader = new THREE.FontLoader();
         font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
-            var material_font = new THREE.MeshBasicMaterial( { color: 0xff6060 } );
+            var material_font = new THREE.MeshBasicMaterial( { color: 0xDC143C } );
             var geometry_ready = new THREE.TextGeometry( 'Ready?', {
                 font: response,
                 size: 1.5,
@@ -176,9 +176,6 @@
                             case 1:
                                 scene.remove(stage_mesh[z][x]);
                                 break;
-                            case 2:
-                                scene.remove(stage_mesh[z][x]);
-                                break;
                             default:
                                 break;
                         }
@@ -199,7 +196,7 @@
             loader.load( 'hole.png', function ( texture ) {
                 var color = new THREE.Color();
                 var geometry = new THREE.BoxGeometry(1,0.2,1);
-                var material = new THREE.MeshLambertMaterial({color: 0xff1200 });
+                var material = new THREE.MeshLambertMaterial({color: 0x48D1CC });
                 var materialB = new THREE.MeshLambertMaterial({color: 0x000000 });
                 var material_tex = new THREE.MeshLambertMaterial({ map: texture });
 
@@ -364,7 +361,7 @@
                             score = 500;
               
                         font_loader.load( 'helvetiker_regular.typeface.json', function ( response  ) {
-                            var material_font = new THREE.MeshBasicMaterial( { color: 0xff6060 } );
+                            var material_font = new THREE.MeshBasicMaterial( { color: 0xDC143C } );
                             var geometry_score = new THREE.TextGeometry( 'SCORE:' + score, {
                             font: response,
                             size: 1.5,
