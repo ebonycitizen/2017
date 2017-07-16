@@ -394,7 +394,7 @@
                     }
                     if(mousedown){
                         scene.remove(font_gover);
-                        state = STATE.READY;
+                        state = STATE.INIT;
                     }
                     break;
                 case STATE.SCORE:
@@ -406,7 +406,7 @@
                     }
                     if(mousedown){
                         scene.remove(font_score);
-                        state = STATE.READY;
+                        state = STATE.INIT;
                     }
                     break;
                 case STATE.NEXT:
@@ -414,11 +414,10 @@
                         scene.add(font_next);
                         init = true;
                         stage = 2;
-                        loadStage(stage);
                     }
                     if(mousedown){
                         scene.remove(font_next);
-                        state = STATE.READY;
+                        state = STATE.INIT;
                     }
                     break;
             }          
